@@ -1,0 +1,53 @@
+System.IO.FileNotFoundException
+  HResult=0x80070002
+  Message=Could not load file or assembly 'Microsoft.AspNetCore.Mvc.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.
+  Source=<Cannot evaluate the exception source>
+  StackTrace:
+<Cannot evaluate the exception stack trace>
+
+
+Calling Assembly.GetCustomAttribute() throws System.IO.FileNotFoundException
+
+
+    Assembly Name: EFL.Web.API
+Unhandled exception. System.IO.FileNotFoundException: Could not load file or assembly 'Microsoft.AspNetCore.Mvc.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.
+File name: 'Microsoft.AspNetCore.Mvc.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'
+   at System.ModuleHandle.ResolveTypeHandleInternal(RuntimeModule module, Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   at System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   at System.Reflection.CustomAttribute.FilterCustomAttributeRecord(MetadataToken caCtorToken, MetadataImport& scope, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1& derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctorWithParameters, Boolean& isVarArg)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeAssembly assembly, RuntimeType caType)
+   at System.Reflection.RuntimeAssembly.GetCustomAttributes(Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(Assembly element, Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttribute(Assembly element, Type attributeType, Boolean inherit)
+   at System.Reflection.CustomAttributeExtensions.GetCustomAttribute(Assembly element, Type attributeType)
+   at AssemblyInfoLibrary.AssemblyInfoUtils.GetCompany() in D:\work\Net Core\AssemblyInfo\AssemblyInfoLibrary\AssemblyInfoUtils.cs:line 65
+   at AssemblyInfoLibrary.AssemblyInfoUtils.GetAssemblyAttributes() in D:\work\Net Core\AssemblyInfo\AssemblyInfoLibrary\AssemblyInfoUtils.cs:line 223
+   at AssemblyInfo.Program.GetAssemblyAttributesFromFile(String filePath) in D:\work\Net Core\AssemblyInfo\AssemblyInfo\Program.cs:line 60
+   at AssemblyInfo.Program.GetAasemblyInfoFromExternalDLL() in D:\work\Net Core\AssemblyInfo\AssemblyInfo\Program.cs:line 31
+   at AssemblyInfo.Program.Main(String[] args) in D:\work\Net Core\AssemblyInfo\AssemblyInfo\Program.cs:line 13
+
+D:\work\Net Core\AssemblyInfo\AssemblyInfo\bin\Debug\net5.0\AssemblyInfo.exe (process 30272) exited with code 0.
+To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+Press any key to close this window . . .
+
+Unhandled exception. System.IO.FileNotFoundException: Could not load file or assembly 'Microsoft.AspNetCore.Mvc.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'. The system cannot find the file specified.
+File name: 'Microsoft.AspNetCore.Mvc.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60'
+   at System.ModuleHandle.ResolveTypeHandleInternal(RuntimeModule module, Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   at System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   at System.Reflection.CustomAttribute.FilterCustomAttributeRecord(MetadataToken caCtorToken, MetadataImport& scope, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1& derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctorWithParameters, Boolean& isVarArg)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeAssembly assembly, RuntimeType caType)
+   at System.Reflection.RuntimeAssembly.GetCustomAttributes(Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(Assembly element, Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttribute(Assembly element, Type attributeType, Boolean inherit)
+   at System.Reflection.CustomAttributeExtensions.GetCustomAttribute(Assembly element, Type attributeType)
+   at AssemblyInfoLibrary.AssemblyInfoUtils.GetCompany() in D:\work\Net Core\AssemblyInfo\AssemblyInfoLibrary\AssemblyInfoUtils.cs:line 65
+   at AssemblyInfoLibrary.AssemblyInfoUtils.GetAssemblyAttributes() in D:\work\Net Core\AssemblyInfo\AssemblyInfoLibrary\AssemblyInfoUtils.cs:line 223
+   at AssemblyInfo.Program.GetAssemblyAttributesFromFile(String filePath) in D:\work\Net Core\AssemblyInfo\AssemblyInfo\Program.cs:line 60
+   at AssemblyInfo.Program.GetAasemblyInfoFromExternalDLL() in D:\work\Net Core\AssemblyInfo\AssemblyInfo\Program.cs:line 31
+   at AssemblyInfo.Program.Main(String[] args) in D:\work\Net Core\AssemblyInfo\AssemblyInfo\Program.cs:line 13
+
+
+Calling GetCustomAttribute() throws System.IO.FileNotFoundException: Could not load file or assembly 'Microsoft.AspNetCore.Mvc.Core'

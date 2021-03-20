@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <Authors>W. Wonneberger</Authors>
+    <Company>Lundi Logic Works</Company>
+    <Product>AssemblyInfo Check.</Product>
+    <Description>AssemblyInfo Check.</Description>
+    <Copyright>Copyright © 2021 - Lundi Logic  Works - All Rights Reserved</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/ClockEndGooner/AssemblyInfoLibrary</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ClockEndGooner/AssemblyInfoLibrary.git</RepositoryUrl>
+    <PackageTags>Assembly, Attributes, .NET Core 5.0</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AssemblyInfoLibrary\AssemblyInfoLibrary.csproj" />
+  </ItemGroup>
+
+</Project>

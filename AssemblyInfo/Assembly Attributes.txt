@@ -1,0 +1,14 @@
+EFL.Web.API has following attributes:
+System.Runtime.CompilerServices.CompilationRelaxationsAttribute
+System.Runtime.CompilerServices.RuntimeCompatibilityAttribute
+System.Diagnostics.DebuggableAttribute
+System.Runtime.Versioning.TargetFrameworkAttribute
+System.Reflection.AssemblyCompanyAttribute
+System.Reflection.AssemblyConfigurationAttribute
+System.Reflection.AssemblyCopyrightAttribute
+System.Reflection.AssemblyDescriptionAttribute
+System.Reflection.AssemblyFileVersionAttribute
+System.Reflection.AssemblyInformationalVersionAttribute
+System.Reflection.AssemblyProductAttribute
+System.Reflection.AssemblyTitleAttribute
+
