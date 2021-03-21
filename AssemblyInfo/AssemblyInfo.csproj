@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AssemblyInfoLibrary\AssemblyInfoLibrary.csproj" />
+    <PackageReference Include="AssemblyInfoLibrary" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

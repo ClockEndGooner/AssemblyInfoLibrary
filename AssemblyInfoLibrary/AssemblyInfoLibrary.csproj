@@ -3,12 +3,13 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Authors>Lundi Logic Works</Authors>
-    <Company>qq</Company>
+    <Company>Lundi Logic Works, LLC.</Company>
     <Description>Obtains and displays the Assembly Attributes in a .NET Core 5.0 based class library.</Description>
     <Copyright>Copyright © 2021 - Lundi Logic Works, LLC. - All Rights Reserved</Copyright>
     <PackageProjectUrl>https://github.com/ClockEndGooner/AssemblyInfoLibrary</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ClockEndGooner/AssemblyInfoLibrary</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
+    <PackageTags>Assembly Info, Assembly Attributes, .NET Core 5.0</PackageTags>
   </PropertyGroup>
 
 </Project>
