@@ -3,6 +3,8 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AssemblyInfoLibrary
 {
@@ -34,12 +36,12 @@ namespace AssemblyInfoLibrary
                 {
                     _currentAssembly = Assembly.LoadFile(filePath);
                 }
-            
+
                 else
                 {
                     var error = $"ERROR: Cannot Access and Load Assembly from \"{filePath}\".";
                     throw new ArgumentException(error, nameof(filePath));
-                }    
+                }
             }
 
             else
@@ -60,7 +62,7 @@ namespace AssemblyInfoLibrary
             if (_currentAssembly.IsDefined(typeof(AssemblyCompanyAttribute)))
             {
                 var companyAttributte =
-                (AssemblyCompanyAttribute) _currentAssembly.GetCustomAttribute(typeof(AssemblyCompanyAttribute));
+                (AssemblyCompanyAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyCompanyAttribute));
 
                 if (companyAttributte != null)
                 {
@@ -78,7 +80,7 @@ namespace AssemblyInfoLibrary
             if (_currentAssembly.IsDefined(typeof(AssemblyConfigurationAttribute)))
             {
                 var configurationAttributte =
-                (AssemblyConfigurationAttribute) _currentAssembly.GetCustomAttribute(typeof(AssemblyConfigurationAttribute));
+                (AssemblyConfigurationAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyConfigurationAttribute));
 
                 if (configurationAttributte != null)
                 {
@@ -94,16 +96,16 @@ namespace AssemblyInfoLibrary
             var copyright = string.Empty;
 
             if (_currentAssembly.IsDefined(typeof(AssemblyCopyrightAttribute)))
-            {                
+            {
                 var copyrightAttributte =
-                (AssemblyCopyrightAttribute) _currentAssembly.GetCustomAttribute(typeof(AssemblyCopyrightAttribute));
+                (AssemblyCopyrightAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyCopyrightAttribute));
 
                 if (copyrightAttributte != null)
                 {
                     copyright = copyrightAttributte.Copyright;
                 }
             }
-            
+
             return copyright;
         }
 
@@ -114,7 +116,7 @@ namespace AssemblyInfoLibrary
             if (_currentAssembly.IsDefined(typeof(AssemblyDescriptionAttribute)))
             {
                 var descriptionAttributte =
-                (AssemblyDescriptionAttribute) _currentAssembly.GetCustomAttribute(typeof(AssemblyDescriptionAttribute));
+                (AssemblyDescriptionAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyDescriptionAttribute));
 
                 if (descriptionAttributte != null)
                 {
@@ -132,7 +134,7 @@ namespace AssemblyInfoLibrary
             if (_currentAssembly.IsDefined(typeof(AssemblyFileVersionAttribute)))
             {
                 var fileVersionAttributte =
-                (AssemblyFileVersionAttribute) _currentAssembly.GetCustomAttribute(typeof(AssemblyFileVersionAttribute));
+                (AssemblyFileVersionAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyFileVersionAttribute));
 
                 if (fileVersionAttributte != null)
                 {
@@ -150,7 +152,7 @@ namespace AssemblyInfoLibrary
             if (_currentAssembly.IsDefined(typeof(AssemblyInformationalVersionAttribute)))
             {
                 var informationalVersionAttributte =
-                (AssemblyInformationalVersionAttribute) _currentAssembly.GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute));
+                (AssemblyInformationalVersionAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute));
 
                 if (informationalVersionAttributte != null)
                 {
@@ -186,7 +188,7 @@ namespace AssemblyInfoLibrary
             if (_currentAssembly.IsDefined(typeof(AssemblyTitleAttribute)))
             {
                 var titleAttributte =
-                (AssemblyTitleAttribute) _currentAssembly.GetCustomAttribute(typeof(AssemblyTitleAttribute));
+                (AssemblyTitleAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyTitleAttribute));
 
                 if (titleAttributte != null)
                 {
@@ -229,7 +231,7 @@ namespace AssemblyInfoLibrary
                 InformationalVersion = GetInformationalVersion(),
                 Product = GetProduct(),
                 AssemblyTitle = GetTitle(),
-                AssemblyVersion = GetAssemblyVersion()                
+                AssemblyVersion = GetAssemblyVersion()
             };
         }
 
@@ -237,7 +239,7 @@ namespace AssemblyInfoLibrary
         {
             if (assemblyAttributes != null)
             {
-                var attributesTrace = new 
+                var attributesTrace = new
                 StringBuilder($"Contents of {assemblyAttributes.GetType().Name} assemblyAttributes:\n");
 
                 attributesTrace.AppendLine($"     AssemblyDisplayName: {assemblyAttributes.AssemblyDisplayName}");
@@ -260,6 +262,40 @@ namespace AssemblyInfoLibrary
                 return string.Empty;
             }
         }
+
+        #region AssemblyInfoUtils Class JSON Serialization & Deserialization
+
+        public static string SerializeToJSON(AssemblyAttributes assemblyAttributes)
+        {
+            if (assemblyAttributes != null)
+            {
+                var serializerOptions = new JsonSerializerOptions();
+                serializerOptions.WriteIndented = true;
+                serializerOptions.IncludeFields = true;
+
+                return JsonSerializer.Serialize(assemblyAttributes, serializerOptions);
+            }
+
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        public static AssemblyAttributes DeserializeFromJSON(string assemblyAttributesJSON)
+        { 
+            if (!string.IsNullOrEmpty(assemblyAttributesJSON))
+            {
+                return JsonSerializer.Deserialize<AssemblyAttributes>(assemblyAttributesJSON); 
+            }
+
+            else
+            {
+                return null;
+            }
+        }
+
+        #endregion AssemblyInfoUtils Class JSON Serialization & Deserialization
 
         #endregion AssemblyInfoUtils Class Implementation
     }

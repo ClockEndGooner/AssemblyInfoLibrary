@@ -11,7 +11,7 @@ namespace AssemblyInfo
         {
             GetInfoFromCallingOrEntryAssembly();
 
-            #if _Get_Info_From_External_DLL_
+#if _Get_Info_From_External_DLL_
 
             /*
              * Exception thrown: 'System.IO.FileNotFoundException' in System.Private.CoreLib.dll
@@ -20,18 +20,43 @@ namespace AssemblyInfo
              */
             GetAasemblyInfoFromExternalDLL();
 
-            #endif // _Get_Info_From_External_DLL_
+#endif // _Get_Info_From_External_DLL_
 
             Console.ReadKey();
-}
+        }
 
         private static void GetInfoFromCallingOrEntryAssembly()
         {
             var assemblyAttributes = GetAssemblyAttributes();
 
             if (assemblyAttributes != null)
-            {
+            { 
                 ShowAssemblyAttributes(assemblyAttributes);
+
+                CheckAssemeblyAttributesJSONSerialization(assemblyAttributes);
+            }
+        }
+
+        private static void CheckAssemeblyAttributesJSONSerialization(AssemblyAttributes assemblyAttributes)
+        {
+            var assemblyAttributesJSON = AssemblyInfoUtils.SerializeToJSON(assemblyAttributes);
+
+            if (!string.IsNullOrEmpty(assemblyAttributesJSON))
+            {
+                Console.WriteLine();
+                Console.WriteLine($"Contents of {assemblyAttributes.GetType().Name} assemblyAttributes Serialized to JSON:");
+                Console.WriteLine($"{assemblyAttributesJSON}");
+
+                var newAssemblyAttributes = AssemblyInfoUtils.DeserializeFromJSON(assemblyAttributesJSON);
+
+                if (newAssemblyAttributes != null)
+                {
+                    var deserializedAssembly = AssemblyInfoUtils.AssemblyAttributesAsString(newAssemblyAttributes);
+
+                    Console.WriteLine();
+                    Console.WriteLine($"Contents of {deserializedAssembly.GetType().Name} deserializedAssembly Deserialized from JSON:");
+                    Console.WriteLine($"{deserializedAssembly}");
+                }
             }
         }
 
