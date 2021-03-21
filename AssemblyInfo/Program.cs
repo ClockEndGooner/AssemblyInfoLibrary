@@ -55,7 +55,7 @@ namespace AssemblyInfo
 
                     Console.WriteLine();
                     Console.WriteLine($"Contents of {deserializedAssembly.GetType().Name} deserializedAssembly Deserialized from JSON:");
-                    Console.WriteLine($"{deserializedAssembly}");
+                    Console.WriteLine($"{assemblyAttributesJSON}");
                 }
             }
         }
