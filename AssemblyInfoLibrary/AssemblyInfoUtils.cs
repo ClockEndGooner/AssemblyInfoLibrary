@@ -1,10 +1,6 @@
 ﻿
-using System;
-using System.IO;
 using System.Reflection;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace AssemblyInfoLibrary
 {
@@ -12,57 +8,34 @@ namespace AssemblyInfoLibrary
     {
         #region AssemblyInfoUtils Class Data Members
 
-        private Assembly _currentAssembly { get; set; }
+        private Assembly CurrentAssembly { get; set; }
 
         #endregion AssemblyInfoUtils Class Data Members
 
-        #region AssemblyInfoUtils Class Constructors
+        #region AssemblyInfoUtils Class Constructor
 
         public AssemblyInfoUtils()
         {
-            _currentAssembly = Assembly.GetEntryAssembly();
+            CurrentAssembly = Assembly.GetEntryAssembly();
 
-            if (_currentAssembly == null)
+            if (CurrentAssembly == null)
             {
-                _currentAssembly = Assembly.GetCallingAssembly();
+                CurrentAssembly = Assembly.GetCallingAssembly();
             }
         }
 
-        public AssemblyInfoUtils(string filePath)
-        {
-            if (!string.IsNullOrEmpty(filePath))
-            {
-                if (File.Exists(filePath))
-                {
-                    _currentAssembly = Assembly.LoadFile(filePath);
-                }
-
-                else
-                {
-                    var error = $"ERROR: Cannot Access and Load Assembly from \"{filePath}\".";
-                    throw new ArgumentException(error, nameof(filePath));
-                }
-            }
-
-            else
-            {
-                var error = "ERROR: Cannot Access and Load Assembly \"filePath\" is Null or Empty.";
-                throw new ArgumentException(error, nameof(filePath));
-            }
-        }
-
-        #endregion AssemblyInfoUtils Class Constructors
+        #endregion AssemblyInfoUtils Class Constructor
 
         #region AssemblyInfoUtils Class Implementation
 
-        private string GetCompany()
+        public string GetCompany()
         {
             var company = string.Empty;
 
-            if (_currentAssembly.IsDefined(typeof(AssemblyCompanyAttribute)))
+            if (CurrentAssembly.IsDefined(typeof(AssemblyCompanyAttribute)))
             {
                 var companyAttributte =
-                (AssemblyCompanyAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyCompanyAttribute));
+                (AssemblyCompanyAttribute) CurrentAssembly.GetCustomAttribute(typeof(AssemblyCompanyAttribute));
 
                 if (companyAttributte != null)
                 {
@@ -73,14 +46,14 @@ namespace AssemblyInfoLibrary
             return company;
         }
 
-        private string GetConfiguration()
+        public string GetConfiguration()
         {
             var configuration = string.Empty;
 
-            if (_currentAssembly.IsDefined(typeof(AssemblyConfigurationAttribute)))
+            if (CurrentAssembly.IsDefined(typeof(AssemblyConfigurationAttribute)))
             {
                 var configurationAttributte =
-                (AssemblyConfigurationAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyConfigurationAttribute));
+                (AssemblyConfigurationAttribute)CurrentAssembly.GetCustomAttribute(typeof(AssemblyConfigurationAttribute));
 
                 if (configurationAttributte != null)
                 {
@@ -91,14 +64,14 @@ namespace AssemblyInfoLibrary
             return configuration;
         }
 
-        private string GetCopyright()
+        public string GetCopyright()
         {
             var copyright = string.Empty;
 
-            if (_currentAssembly.IsDefined(typeof(AssemblyCopyrightAttribute)))
+            if (CurrentAssembly.IsDefined(typeof(AssemblyCopyrightAttribute)))
             {
                 var copyrightAttributte =
-                (AssemblyCopyrightAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyCopyrightAttribute));
+                (AssemblyCopyrightAttribute)CurrentAssembly.GetCustomAttribute(typeof(AssemblyCopyrightAttribute));
 
                 if (copyrightAttributte != null)
                 {
@@ -109,14 +82,14 @@ namespace AssemblyInfoLibrary
             return copyright;
         }
 
-        private string GetDescription()
+        public string GetDescription()
         {
             var description = string.Empty;
 
-            if (_currentAssembly.IsDefined(typeof(AssemblyDescriptionAttribute)))
+            if (CurrentAssembly.IsDefined(typeof(AssemblyDescriptionAttribute)))
             {
                 var descriptionAttributte =
-                (AssemblyDescriptionAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyDescriptionAttribute));
+                (AssemblyDescriptionAttribute)CurrentAssembly.GetCustomAttribute(typeof(AssemblyDescriptionAttribute));
 
                 if (descriptionAttributte != null)
                 {
@@ -127,14 +100,14 @@ namespace AssemblyInfoLibrary
             return description;
         }
 
-        private string GetFileVersion()
+        public string GetFileVersion()
         {
             var version = string.Empty;
 
-            if (_currentAssembly.IsDefined(typeof(AssemblyFileVersionAttribute)))
+            if (CurrentAssembly.IsDefined(typeof(AssemblyFileVersionAttribute)))
             {
                 var fileVersionAttributte =
-                (AssemblyFileVersionAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyFileVersionAttribute));
+                (AssemblyFileVersionAttribute)CurrentAssembly.GetCustomAttribute(typeof(AssemblyFileVersionAttribute));
 
                 if (fileVersionAttributte != null)
                 {
@@ -145,14 +118,14 @@ namespace AssemblyInfoLibrary
             return version;
         }
 
-        private string GetInformationalVersion()
+        public string GetInformationalVersion()
         {
             var version = string.Empty;
 
-            if (_currentAssembly.IsDefined(typeof(AssemblyInformationalVersionAttribute)))
+            if (CurrentAssembly.IsDefined(typeof(AssemblyInformationalVersionAttribute)))
             {
                 var informationalVersionAttributte =
-                (AssemblyInformationalVersionAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute));
+                (AssemblyInformationalVersionAttribute)CurrentAssembly.GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute));
 
                 if (informationalVersionAttributte != null)
                 {
@@ -163,14 +136,14 @@ namespace AssemblyInfoLibrary
             return version;
         }
 
-        private string GetProduct()
+        public string GetProduct()
         {
             var product = string.Empty;
 
-            if (_currentAssembly.IsDefined(typeof(AssemblyProductAttribute)))
+            if (CurrentAssembly.IsDefined(typeof(AssemblyProductAttribute)))
             {
                 var productAttributte =
-                (AssemblyProductAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyProductAttribute));
+                (AssemblyProductAttribute)CurrentAssembly.GetCustomAttribute(typeof(AssemblyProductAttribute));
 
                 if (productAttributte != null)
                 {
@@ -181,14 +154,14 @@ namespace AssemblyInfoLibrary
             return product;
         }
 
-        private string GetTitle()
+        public string GetTitle()
         {
             var title = string.Empty;
 
-            if (_currentAssembly.IsDefined(typeof(AssemblyTitleAttribute)))
+            if (CurrentAssembly.IsDefined(typeof(AssemblyTitleAttribute)))
             {
                 var titleAttributte =
-                (AssemblyTitleAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyTitleAttribute));
+                (AssemblyTitleAttribute)CurrentAssembly.GetCustomAttribute(typeof(AssemblyTitleAttribute));
 
                 if (titleAttributte != null)
                 {
@@ -199,30 +172,17 @@ namespace AssemblyInfoLibrary
             return title;
         }
 
-        private string GetAssemblyVersion()
+        public string GetAssemblyVersion()
         {
-            var version = string.Empty;
-
-            if (_currentAssembly.IsDefined(typeof(AssemblyVersionAttribute)))
-            {
-                var versionAttributte =
-                (AssemblyVersionAttribute)_currentAssembly.GetCustomAttribute(typeof(AssemblyVersionAttribute));
-
-                if (versionAttributte != null)
-                {
-                    version = versionAttributte.Version;
-                }
-            }
-
-            return version;
+            return AssemblyName.GetAssemblyName(CurrentAssembly.Location).Version.ToString();
         }
 
         public AssemblyAttributes GetAssemblyAttributes()
         {
             return new AssemblyAttributes
             {
-                AssemblyDisplayName = _currentAssembly.FullName,
-                AssemblyLocation = _currentAssembly.Location,
+                AssemblyDisplayName = CurrentAssembly.FullName,
+                AssemblyLocation = CurrentAssembly.Location,
                 Commpany = GetCompany(),
                 Configuration = GetConfiguration(),
                 Copyright = GetCopyright(),
@@ -234,68 +194,6 @@ namespace AssemblyInfoLibrary
                 AssemblyVersion = GetAssemblyVersion()
             };
         }
-
-        public static string AssemblyAttributesAsString(AssemblyAttributes assemblyAttributes)
-        {
-            if (assemblyAttributes != null)
-            {
-                var attributesTrace = new
-                StringBuilder($"Contents of {assemblyAttributes.GetType().Name} assemblyAttributes:\n");
-
-                attributesTrace.AppendLine($"     AssemblyDisplayName: {assemblyAttributes.AssemblyDisplayName}");
-                attributesTrace.AppendLine($"        AssemblyLocation: {assemblyAttributes.AssemblyLocation}");
-                attributesTrace.AppendLine($"                Commpany: {assemblyAttributes.Commpany}");
-                attributesTrace.AppendLine($"           Configuration: {assemblyAttributes.Configuration}");
-                attributesTrace.AppendLine($"               Copyright: {assemblyAttributes.Copyright}");
-                attributesTrace.AppendLine($"             Description: {assemblyAttributes.Description}");
-                attributesTrace.AppendLine($"     AssemblyFileVersion: {assemblyAttributes.AssemblyFileVersion}");
-                attributesTrace.AppendLine($"    InformationalVersion: {assemblyAttributes.InformationalVersion}");
-                attributesTrace.AppendLine($"                 Product: {assemblyAttributes.Product}");
-                attributesTrace.AppendLine($"           AssemblyTitle: {assemblyAttributes.AssemblyTitle}");
-                attributesTrace.AppendLine($"         AssemblyVersion: {assemblyAttributes.AssemblyVersion}");
-
-                return attributesTrace.ToString();
-            }
-
-            else
-            {
-                return string.Empty;
-            }
-        }
-
-        #region AssemblyInfoUtils Class JSON Serialization & Deserialization
-
-        public static string SerializeToJSON(AssemblyAttributes assemblyAttributes)
-        {
-            if (assemblyAttributes != null)
-            {
-                var serializerOptions = new JsonSerializerOptions();
-                serializerOptions.WriteIndented = true;
-                serializerOptions.IncludeFields = true;
-
-                return JsonSerializer.Serialize(assemblyAttributes, serializerOptions);
-            }
-
-            else
-            {
-                return string.Empty;
-            }
-        }
-
-        public static AssemblyAttributes DeserializeFromJSON(string assemblyAttributesJSON)
-        { 
-            if (!string.IsNullOrEmpty(assemblyAttributesJSON))
-            {
-                return JsonSerializer.Deserialize<AssemblyAttributes>(assemblyAttributesJSON); 
-            }
-
-            else
-            {
-                return null;
-            }
-        }
-
-        #endregion AssemblyInfoUtils Class JSON Serialization & Deserialization
 
         #endregion AssemblyInfoUtils Class Implementation
     }

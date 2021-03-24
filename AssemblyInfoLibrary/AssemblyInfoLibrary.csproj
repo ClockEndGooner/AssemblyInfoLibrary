@@ -10,6 +10,7 @@
     <RepositoryUrl>https://github.com/ClockEndGooner/AssemblyInfoLibrary</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageTags>Assembly Info, Assembly Attributes, .NET Core 5.0</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>
